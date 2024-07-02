@@ -1,0 +1,129 @@
+{% extends 'core/base.html' %}
+{% block title %} Dashboard {% endblock %}
+{% block content %}
+<div class="px-6 py-6 bg-gray-100 rounded-xl">
+    <h2 class="mb-12 text-2xl text-center">My items</h2>
+        <div class="grid grid-cols-3 gap-3">
+            <a href="#"> 
+                <div class="p-6 bg-white rounded-b-xl">
+                 <h2 class="text-2xl"> 
+                    Products
+                 </h2>
+                 <p class="text-gray-500">
+                      {{items |length}}
+                 </p>
+                </div>
+             </a>
+            <a href="#"> 
+                <div class="p-6 bg-white rounded-b-xl">
+                 <h2 class="text-2xl"> 
+                    Cathegories
+                 </h2>
+                 <p class="text-gray-500">
+                      {{categories|length }}
+                 </p>
+                </div>
+             </a>
+             <a href="#"> 
+                <div class="p-6 bg-red-400 rounded-b-xl">
+                 <h2 class="text-2xl text-stone-50"> 
+                  Sold out products
+                 </h2>
+                 <p class="text-stone-50">
+                  
+              {{sold_out_item | length}}
+                 </p>
+                </div>
+             </a>
+             <a href="#"> 
+                <div class="p-6 bg-white rounded-b-xl">
+                 <h2 class="text-2xl"> 
+                    Revenue
+                 </h2>
+                 <p class="text-gray-500">
+                      {{shop.profit}} DT
+                 </p>
+                </div>
+             </a>
+        </div>
+        <div>
+         <canvas id="paymentChart" width="400" height="200"></canvas>
+        </div>
+        {% if shop %}
+        <div class="relative overflow-x-auto">
+         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+               <th scope="col" class="px-6 py-3">
+                  product
+               </th>
+               <th scope="col" class="px-6 py-3">
+                  payer
+               </th>
+               <th scope="col" class="px-6 py-3">
+                  Date
+               </th>
+               <th scope="col" class="px-6 py-3">
+                  Amount
+               </th>
+               <th scope="col" class="px-6 py-3">
+                  category</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for payment in payments %}
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+               <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                  {{payment.product.name}}
+               </th>
+               <td class="px-6 py-4">
+
+                  {{payment.email}}
+               </td>
+               <td class="px-6 py-4">
+
+                  {{payment.purchaseDate}}
+               </td>
+               <td class="px-6 py-4">
+
+                  {{payment.amount}}
+               </td>
+               <td class="px-6 py-4">
+
+                  {{payment.product.category}}
+               </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+         </table>
+        </div>
+        {% endif %}
+    <script>
+        const months = {{ months|safe }};
+        const totals = {{ totals|safe }};
+
+        var ctx = document.getElementById('paymentChart').getContext('2d');
+        var chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: months,
+                datasets: [{
+                    label: 'Total Amount per Month',
+                    data: totals,
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</div>
+
+{% endblock %}

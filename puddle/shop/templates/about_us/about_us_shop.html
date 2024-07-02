@@ -1,0 +1,22 @@
+{% extends 'core/base.html' %}
+{% block title %} {{shop.name}} {% endblock %}
+{% block content %}
+<div> 
+    <div style="padding: 1rem ;">
+        {% for about in about_us %}
+        <div class="" style="display: flex;">
+            <div  style="padding-left: 1rem;padding-right: 1rem;">
+                <h2 class="mb-12 text-4xl text-font text-center underline">
+                    About us</h2>
+             <h2 class="text-2xl"> 
+                 {{about.description}}
+             </h2>
+            </div>
+            <div>
+             <img src="{{about.gallery.url}}" class="">
+            </div> 
+            
+        </div>
+        {% endfor %} 
+</div>
+{% endblock %}

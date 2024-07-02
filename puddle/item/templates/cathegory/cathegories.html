@@ -1,0 +1,103 @@
+{% extends 'core/base.html' %}
+{% block title %} Cathegory {% endblock %}
+{% block content %}
+<div class="pb-6 px-6 py-6">
+  <h2 class="mb-12 text-4xl text-font text-center">
+    {% if shop %}
+    {{shop.name}}
+    {% endif %}
+     Cathegory</h2>
+  {% if request.user == shop.created_by %}
+  <div style="display: flex;justify-content: end;padding-bottom: 1em;">
+    <a data-bs-toggle="modal" data-bs-target="#addCategory">
+    <button class="cta" data-bs-toggle="modal" data-bs-target="#addCategory">
+        <span class="hover-underline-animation"> Add New Cathegory </span>
+        <img id="arrow-horizontal" src="../../../media/image/right-arrow.png">
+      </button>
+</a></div>
+{% endif %}
+
+<div class="modal fade" id="addCategory" tabindex="-1" aria-labelledby="addCategoryLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content" style="background-color: #2d3748; width: 70%;">
+          <div class="modal-header" style="border-bottom: none;">
+              <h5 class="modal-title" style="color: #fff;" id="addCategoryLabel">
+                      Add Category
+              </h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" style="color: #fff;">
+              <form method="post" action="{% url 'item:newCathegory' %}" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <div class="space-y-4">
+                      <div class="mb-3">
+                          <label class="inline-block mb-2" style="color: #fff;">Name</label><br>
+                          {{ form.name }}
+                          <input type="text" name="name" value="{{ form.name.value }}" class="w-full py-4 px-6 rounded-xl border" maxlength="255">
+                      </div>
+                      <div class="mb-3">
+                          <label class="inline-block mb-2" style="color: #fff;">Image</label><br>
+                          {{ form.image }}
+                          <input type="file" name="image" accept="image/*" value="{{ form.image.value }}" class="w-full py-4 px-6 rounded-xl border" maxlength="255">
+                      </div>
+                  </div>
+                  {% if form.errors or form.non_field_errors %}
+                  <div class="mb-3 p-6 bg-red-100 rounded-xl">
+                      {% for field in form %}
+                      {{ field.errors }}
+                      {% endfor %}
+                      {{ form.non_field_errors }}
+                  </div>
+                  {% endif %}
+                  <div style="display: flex; justify-content: end;">
+                      <button class="fancy inline-block mt-6 px-6 py-3">
+                          <span class="top-key"></span>
+                          <span class="text">Submit</span>
+                          <span class="bottom-key-1"></span>
+                          <span class="bottom-key-2"></span>
+                      </button>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+  <div class="grid grid-cols-3 gap-3">
+  {% for category in categories %}
+  <a href="{% url 'item:items' %}?query={{""}}&category={{category.name}}&shop={{""}}">
+  <div class="notification">
+    <div class="notiglow"></div>
+    <div class="notiborderglow"></div>
+    <div class="notititle">{{category.name}}</div>
+    <div class="notibody">{{category.shop.name}}</div>
+    <div class="notibody">{{category.shop.created_by}}</div>
+    <div class="notibody">{{category.items.count}} items</div>
+    <div class="notibody">
+      {% if request.user.is_authenticated and request.user == shop.created_by %}
+
+
+    <div style="display: flex;justify-content: end;margin-top: -0.40em;gap: 5px;">
+        <!-- Delete button -->
+  <form id="delete-form" action="{% url 'item:deleteCathegory' category.id %}" method="POST">
+    {% csrf_token %}
+    <!--                    <button type="submit" class="btn btn-danger">Delete</button>
+-->
+    <button class="div-button-card delete-button"  type="submit">
+        <img src="../../../media/image/white_delete.png" class="delete-svgIcon">
+      </button>
+</form>
+
+
+    </div>
+ {% endif %}
+
+</div>
+  </div>
+  </a>
+  {% endfor %}
+</div>
+</div>
+
+{% endblock %}

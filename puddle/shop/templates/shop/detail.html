@@ -1,0 +1,81 @@
+{% extends 'core/base.html' %}
+{% block title %} {{shop.name}} {% endblock %}
+{% block content %}
+<div>
+    <div class="detail-back" style="background-image: url('{{shop.image.url}}');">
+        <h1 class="title-shop" style="color: {{shop.color}};">{{shop.titre}}</h1>
+        <p class="text-shop-top" style="color: {{shop.color_secondary}};">
+            <strong class="">Description : </strong>
+            <br>{{shop.description}}
+        </p>
+        {% if request.user == shop.created_by %}
+        <div class="div-button">
+            <a href="{% url 'shop:edit' shop.id%}" class="inline-block mt-6 px-6 py-3 text-lg font-semibold bg-white text-black	 rounded-xl">
+                Edit
+            </a>
+            <a href="{% url 'shop:delete' shop.id%}" class="inline-block mt-6 px-6 py-3 text-lg font-semibold bg-black text-white rounded-xl">
+                Delete
+            </a>
+        </div>
+        {% endif %}
+    </div>
+
+</div>
+
+<div class="px-6 py-12 rounded-xl div-cath">
+    <div style="margin: auto;">
+        <a href="{% url 'item:cathegory'%}?shop={{shop.id}}">
+            <h2 class="mb-12 text-2xl text-center">Choose By ...</h2>
+        </a>
+        <button class="button-arrow">
+            <img class="img-arrow-left" src="../../../media/image/arrow-white.png">
+        </button>
+        <button class="button-arrow">
+            <img class="img-arrow" src="../../../media/image/arrow-white.png">
+        </button>
+          
+    </div>
+    <div class="grid grid-cols-3 gap-3">
+       {% for c in categories %}
+       <div class="card-cont">
+        <a href="{% url 'item:items' %}?query={{""}}&category={{c.name}}&shop={{shop.id}}">
+           <div>
+            <img src="{{c.image.url}}" class="img-cath">
+           </div> 
+           <div class="cont-disc rounded-b-xl" style="text-align: center;">
+            <h2 class="text-2xl"> 
+                {{c.name}}
+            </h2>
+           </div>
+        </a>
+       </div>
+       {% endfor %} 
+    </div>
+</div>
+<div class="px-6 py-12 bg-gray-100 rounded-xl">
+    <a href="{% url 'item:items' %}?query={{""}}&shop={{shop.id}}">
+    <h2 class="mb-12 text-2xl text-center">
+        Our products
+    </h2>
+</a>
+    <div class="grid grid-cols-4 gap-3">
+       {% for item in related_items %}
+       <div class="card-cont">
+        <a href="{% url 'item:detail' item.id %}">
+            <div class="card-img-div">
+                <img src="{{item.image.url}}" class="img-item-card">
+               </div>
+           <div class="cont-disc rounded-b-xl">
+            <h2 class="text-2xl"> 
+                {{item.name}}
+            </h2>
+            <p class="text-gray-500">
+                Price: {{item.price}}
+            </p>
+           </div>
+        </a>
+       </div>
+       {% endfor %} 
+    </div>
+</div>
+{% endblock %}

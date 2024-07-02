@@ -1,0 +1,74 @@
+{% extends 'core/base.html' %}
+{% block title %} Items {% endblock %}
+{% block content %}
+<div class="pb-6 px-6 py-6 grid grid-cols-4 gap-4 bg-gray-100">
+    <div class="col-span-1">
+    
+        <p class="font-semibold">Categories</p>
+        <ul>
+            {% for category in categories %}
+            <li class="py-2 px-2 rounded-xl {% if category.id == category_id %} bg-gray-200 {% endif %}">
+                <a href="{% url 'item:items' %}?query={{query}}&category={{category.name}}&shop={{shop.id}}">
+                    {{category.name}}
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+        <hr class="my-6">
+        <p class="font-semibold">Clear filters</p>
+        <ul>
+            <li>
+                <a href="{% url 'item:items' %}" class="mt-2 py-4 px-8 inline-block bg-yellow-500 text-lg rounded-xl text-white">
+                    Clear
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="col-span-3">
+        <div class="pb-6" style="display: grid;grid-template-columns: auto auto;">
+            <div>
+                <form method="get" action="{% url 'item:items' %}">
+                    <div class="search">
+                       <input name="query"  value="{{query}}" type="text" class="search__input" placeholder="Search for ...">
+                       <button class="search__button">
+                           <img src="../../../media/image/search.png" class="search__icon">
+                       </button>
+                   </div>
+               </form>
+            </div>
+           
+          <div style="display: flex;justify-content: end;">
+            {% if request.user == shop.created_by %}
+            <a href="{% url 'item:new' %}">
+                <button class="cta">
+                    <span class="hover-underline-animation"> Add New Item </span>
+                    <img id="arrow-horizontal" src="../../../media/image/right-arrow.png">
+                  </button>
+            </a>
+            {% endif %}
+          </div>
+        </div>
+
+          
+        <div class="grid grid-cols-3 gap-3">
+            {% for item in items %}
+            <div class="card-cont">
+                <a href="{% url 'item:detail' item.id %}">
+                   <div class="card-img-div">
+                    <img src="{{item.image.url}}" class="img-item-card">
+                   </div> 
+                   <div class="cont-disc rounded-b-xl">
+                    <h2 class="text-2xl"> 
+                        {{item.name}}
+                    </h2>
+                    <p class="text-gray-500">
+                        Price: {{item.price}} DTN
+                    </p>
+                   </div>
+                </a>
+               </div>
+            {% endfor %} 
+         </div>
+    </div>
+</div>
+{% endblock %}

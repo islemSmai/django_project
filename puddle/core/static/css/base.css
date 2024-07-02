@@ -1,0 +1,127 @@
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 0px;
+  }
+  #main {
+    transition: margin-left 0.3s;
+    padding: 20px;
+}
+  p{
+    color: #1d2d44;
+  }
+  h2{
+    color: #273469;
+  }
+  .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .sidenav a:hover {
+    color: #f1f1f1;
+  }
+  
+  .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+  .div-con{
+    padding: 1em;
+  }
+  .cart-shop{
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 10px;
+    justify-self: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    position: relative;
+  }
+  .flip-card {
+    background-color: transparent;
+    width: 350px;
+    height: 300px;
+    perspective: 1000px;
+  }
+  .flip-card:hover .cart-shop {
+    transform: rotateY(180deg);
+  }
+  
+  .flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  
+  .flip-card-front {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .flip-card-back {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    transform: rotateY(180deg);
+  }
+  .cart-shop:hover{
+    transform: rotateY(180deg);
+
+  }
+  .img-shop{
+    height: 35vh;
+    width: 290px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
+  }
+  .img-shop-back{
+    width: 60px;
+    height: 60px;
+    border: solid;
+    border-radius: 30%;
+  }
+  .text-back{
+    font-size: 2rem;
+    line-height: 2rem;
+  }
+  .div-img-shop{
+    justify-content: center;
+    display: flex;
+  }
+  .desc-shop{
+    padding: 0.5em;
+  }
+  .text-font{
+    color: #212F3C;
+    font-family: Helvetica;
+  }
+  
+  @media screen and (min-width: 750px) and (max-width: 1000px) {
+    .flip-card {
+      width: 300px;
+      height: 300px;
+    }
+  }
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }

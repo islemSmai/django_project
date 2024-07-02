@@ -1,0 +1,115 @@
+.containt-item{
+    display: flex;
+    margin-left: 5em;
+}
+.images{
+    width: 100px;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.img-principale{
+    height: 450px;
+    max-height: 450px;
+}
+.img-gallery:hover{
+    cursor: pointer;
+    border: solid;
+}
+.text-item{
+    width: 500px;
+    font-family: Helvetica;
+}
+.title-item-detail{
+    font-size: 3rem;
+    line-height: 1rem;
+}
+.card-img-div{
+  background: #00AC7C;
+  color: #fff;
+  position: relative;
+}
+.card-img-div::after{
+  text-align: center;
+  content: "Quick overviews";
+  padding-top: 0.8em;
+  position: absolute;
+  left: 0;
+  bottom: -60px;
+  background: #fff;
+  color: #2d3748;
+  height: 3.5em;
+  width: 100%;
+  transition: all 80ms;
+  font-weight: 600;
+  text-transform: uppercase;
+  opacity: 0;
+}
+.card-img-div:hover::after {
+    bottom: 0;
+    opacity: 1;
+  }
+  .card-img-div:active {
+    transform: scale(0.98);
+  }
+  
+  .card-img-div:active::after {
+    content: "Quick overviews";
+    height: 3.125em;
+  }
+  .img-item-card{
+    height: 63vh;
+    width: 100%;
+
+}
+.search {
+    display: flex;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .search__input {
+    font-family: inherit;
+    font-size: inherit;
+    background-color: #f4f2f2;
+    border: none;
+    color: #646464;
+    padding: 0.7rem 1rem;
+    border-radius: 30px;
+    width: 12em;
+    transition: all ease-in-out .5s;
+    margin-right: -2rem;
+  }
+  
+  .search__input:hover, .search__input:focus {
+    box-shadow: 0 0 1em #00000013;
+  }
+  
+  .search__input:focus {
+    outline: none;
+    background-color: #fff;
+  }
+  
+  .search__input::-webkit-input-placeholder {
+    font-weight: 100;
+    color: #ccc;
+  }
+  
+  .search__input:focus{
+    background-color: #fff;
+  }
+  
+  .search__button {
+    border: none;
+    margin-top: .1em;
+    background-color: transparent;
+  }
+  
+  .search__button:hover {
+    cursor: pointer;
+  }
+  
+  .search__icon {
+    height: 1.3em;
+    width: 1.3em;
+  }

@@ -1,0 +1,46 @@
+{% extends 'core/base.html' %}
+{% block title %} Shops {% endblock %}
+{% block content %}
+<div class="pb-6 px-6 py-6 gap-4 bg-gray-100">
+    <div class="pb-6">
+        <div>
+            <form method="get" action="{% url 'shop:shops' %}">
+                <div class="search">
+                   <input name="query"  value="{{query}}" type="text" class="search__input" placeholder="Search for ...">
+                   <button class="search__button">
+                       <img src="../../../media/image/search.png" class="search__icon">
+                   </button>
+               </div>
+           </form>
+        </div>
+    </div>
+    <div class="col-span-3">
+        <div class="grid grid-cols-3 gap-3">
+            {% for shop in shops %}
+            <div>
+             <a href="{% url 'shop:detail' shop.id %}">
+                <div class="card">
+                    <a href="{% url 'shop:detail' shop.id %}">
+                   <div>
+                    <img src="{{shop.image.url }}" class="img-shop img-shops">
+                
+                   </div>
+                    <p class="title"> {{shop.name}}</p>
+                    <p class="text">Owner: {{shop.created_by}}</p>
+                    <p class="text"></p>
+                  </div>
+                <!--<div>
+                 <img src="{{shop.image.url}}" class="rounded-t-xl">
+                </div> 
+                <div class="p-6 bg-white rounded-b-xl">
+                 <h2 class="text-2xl"> 
+                     {{shop.name}}
+                 </h2>
+                </div>-->
+             </a>
+            </div>
+            {% endfor %} 
+         </div>
+    </div>
+</div>
+{% endblock %}
