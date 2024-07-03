@@ -5,17 +5,13 @@ This repository contains the code for a comprehensive Django project aimed at su
 ## Key Applications
 ### 1 Item Management
   <br/>
-
-  _ **Description:**  Manages products and their categories.
+     _ **Description:**  Manages products and their categories.
     <br/>
-
-  _ **Components:**
+     _ **Components:**
     <br/>
-
- _ **Models:**: Define the structure of products and categories.
+     _ **Models:** Define the structure of products and categories.
    <br/>
-
- _ **Views:** Handle the logic for displaying and manipulating product and category data.
+     _ **Views:** Handle the logic for displaying and manipulating product and category data.
    <br/>
 
  _ **Templates:** Provide the HTML structure for rendering product and category pages.
@@ -28,33 +24,25 @@ This repository contains the code for a comprehensive Django project aimed at su
 
   _ **Components:**
   <br/>
-  
   _ **Models:** Represent the shop’s core entities and data relationships.
 <br/>
   _ **Views:** Implement the functionality for shop-related operations.
 <br/>
   _ **Templates:** Render the user interface for various shop interactions.
+  <br/>
   _ **URLs:** Direct user requests to the correct views for shop functions.
 ### 3 Conversation Management
 <br/>
-
   _ **Description:**  Facilitates communication between users and the shop owner.
   <br/>
-
   _ **Components:**
   <br/>
-
   _ **Models:** Define the structure of messages and conversations.
-
   <br/>
-  
   _ **Views:** Manage the logic for user interactions within conversations.
   <br/>
-
-  
   _ **Templates:** Create the visual presentation of conversations and messages.
     <br/>
-
   _ **URLS:** Map user requests to the views handling conversation features.
 ...
 ## How to Use
