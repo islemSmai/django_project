@@ -12,8 +12,7 @@ Templates: Provide the HTML structure for rendering product and category pages.
 URLs: Route user requests to the appropriate views for product and category operations.
 ### 2 Shop Management
 <br/>
- _ **Description:**  
-   Manages the overall shop operations.
+  _ **Description:**  Manages the overall shop operations.
   <br/>
 
   _ **Components:**
