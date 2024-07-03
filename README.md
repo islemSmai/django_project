@@ -4,23 +4,37 @@ Welcome to the Django Online Shop repository! This project is designed to facili
 This repository contains the code for a comprehensive Django project aimed at supporting various aspects of an online shop. The project is modular, with several distinct applications that work together to provide a seamless shopping experience.
 ## Key Applications
 ### 1 Item Management
+  <br/>
+
   _ **Description:**  Manages products and their categories.
+    <br/>
+
   _ **Components:**
-Models: Define the structure of products and categories.
-Views: Handle the logic for displaying and manipulating product and category data.
-Templates: Provide the HTML structure for rendering product and category pages.
-URLs: Route user requests to the appropriate views for product and category operations.
+    <br/>
+
+ _ **Models:**: Define the structure of products and categories.
+   <br/>
+
+ _ **Views:** Handle the logic for displaying and manipulating product and category data.
+   <br/>
+
+ _ **Templates:** Provide the HTML structure for rendering product and category pages.
+   <br/>
+
+ _ **URLS:** Route user requests to the appropriate views for product and category operations.
 ### 2 Shop Management
   _ **Description:**  Manages the overall shop operations.
   <br/>
 
   _ **Components:**
   <br/>
-
-Models: Represent the shop’s core entities and data relationships.
-Views: Implement the functionality for shop-related operations.
-Templates: Render the user interface for various shop interactions.
-URLs: Direct user requests to the correct views for shop functions.
+  
+  _ **Models:** Represent the shop’s core entities and data relationships.
+<br/>
+  _ **Views:** Implement the functionality for shop-related operations.
+<br/>
+  _ **Templates:** Render the user interface for various shop interactions.
+  _ **URLs:** Direct user requests to the correct views for shop functions.
 ### 3 Conversation Management
 <br/>
 
@@ -30,10 +44,18 @@ URLs: Direct user requests to the correct views for shop functions.
   _ **Components:**
   <br/>
 
-Models:  Define the structure of messages and conversations.
-Views: Manage the logic for user interactions within conversations.
-Templates: Create the visual presentation of conversations and messages.
-URLs: Map user requests to the views handling conversation features.
+  _ **Models:** Define the structure of messages and conversations.
+
+  <br/>
+  
+  _ **Views:** Manage the logic for user interactions within conversations.
+  <br/>
+
+  
+  _ **Templates:** Create the visual presentation of conversations and messages.
+    <br/>
+
+  _ **URLS:** Map user requests to the views handling conversation features.
 ...
 ## How to Use
 1 Clone the Repository
