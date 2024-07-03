@@ -11,15 +11,26 @@ Views: Handle the logic for displaying and manipulating product and category dat
 Templates: Provide the HTML structure for rendering product and category pages.
 URLs: Route user requests to the appropriate views for product and category operations.
 ### 2 Shop Management
+<br/>
   _ **Description:** Manages the overall shop operations.
+  <br/>
+
   _ **Components:**
+  <br/>
+
 Models: Represent the shop’s core entities and data relationships.
 Views: Implement the functionality for shop-related operations.
 Templates: Render the user interface for various shop interactions.
 URLs: Direct user requests to the correct views for shop functions.
 ### 3 Conversation Management
+<br/>
+
   _ **Description:** Facilitates communication between users and the shop owner.
+  <br/>
+
   _ **Components:**
+  <br/>
+
 Models:  Define the structure of messages and conversations.
 Views: Manage the logic for user interactions within conversations.
 Templates: Create the visual presentation of conversations and messages.
@@ -45,6 +56,7 @@ python manage.py migrate
 python manage.py runserver
 ```
 5 Access the Application
+<br/>
 Open your browser and navigate to http://127.0.0.1:8000.
 
 
