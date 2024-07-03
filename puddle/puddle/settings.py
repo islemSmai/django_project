@@ -127,15 +127,15 @@ USE_TZ = True
 STATIC_URL = 'static/'
 MEDIA_URL='media/'
 MEDIA_ROOT = BASE_DIR / 'media'
-STRIPE_PUBLIC_KEY="pk_test_51PKzPw07FsskktwvOZ9zWKVjFnWo4dVr5OopFS4VN2LCZBEZlT4h3sJF4dI0Rrf3Dm9q6QmkUp3cU95KSebfBRUf00lGLFwpg9"
-STRIPE_SECRET_KEY="sk_test_51PKzPw07Fsskktwvt1ljVEVtxItUpHyonxTCP5DB8o48yLr29R2gpb96uKftU9WHrToNyGD3aliMK8NfachQipqL00bdYrh4vb"
+STRIPE_PUBLIC_KEY="your_public_key"
+STRIPE_SECRET_KEY="your_secret_key"
 STRIPE_WEBHOOK_SECRET=""
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 0
-EMAIL_HOST_PASSWORD = 123
+EMAIL_HOST_USER = "your_email_host_user"
+EMAIL_HOST_PASSWORD = "your password"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
