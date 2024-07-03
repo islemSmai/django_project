@@ -14,7 +14,6 @@ def items(request):
     query = request.GET.get('query','')
     category_name = request.GET.get('category','')
     shop_id = request.GET.get('shop',0)
-    shop_exists = Shop.objects.filter(created_by=request.user).exists()
     shop = ''
     if shop_id:
         categories = Category.objects.filter(Q(shop_id=shop_id) & Q(items__isnull=False)).distinct()
@@ -45,10 +44,8 @@ def items(request):
         'categories':categories,
         'category_nam':category_name, 
         'shop':shop,
-        'shop_exists':shop_exists       
     })
 def detail(request,pk):
-    shop_exists = Shop.objects.filter(created_by=request.user).exists()
     item = get_object_or_404(Item,pk=pk)
     images = Image.objects.filter(item=item)
     related_items = Item.objects.filter(category=item.category,is_sold=False).exclude(pk=pk)[0:5]
@@ -56,7 +53,6 @@ def detail(request,pk):
         'item':item,
         'images':images,
         'related_items':related_items,
-        'shop_exists':shop_exists
     })
 @login_required
 def new(request):
@@ -75,12 +71,10 @@ def new(request):
     return render(request,'item/form.html',{
         'form': form,
         'title': 'New item',
-        'shop_exists':shop
     })
 @login_required
 def edit(request,pk):
     item = get_object_or_404(Item,pk=pk)
-    shop_exists = item.category.shop.created_by == request.user
     if request.method == 'POST':
         form = EditItemForm(request.POST,request.FILES,instance=item)
         if form.is_valid():
@@ -91,17 +85,14 @@ def edit(request,pk):
     return render(request,'item/form.html',{
         'form': form,
         'title': 'Edit item',
-        'shop_exists':shop_exists
     })
 @login_required
 def delete(request,pk):
     item = get_object_or_404(Item,pk=pk)
-    shop_exists = item.category.shop.created_by == request.user
     item.delete()
-    return redirect('item/items.html',{'shop_exists':shop_exists})
+    return redirect('item:items')
 #Categories
 def cathegory(request):
-    shop_exists = Shop.objects.filter(created_by=request.user).exists()
     shop_id = request.GET.get('shop',0)
     if shop_id:
         categories = Category.objects.filter(Q(shop_id=shop_id) & Q(items__isnull=False)).distinct()
@@ -113,46 +104,41 @@ def cathegory(request):
     return render(request,'cathegory/cathegories.html',{
         'categories':categories,
         'shop':shop,
-        'shop_exists':shop_exists
     })
 @login_required
 def newCathegory(request):
     if request.method == 'POST':
-        shop_exists = Shop.objects.filter(created_by=request.user).exists()
         form = NewCategoryForm(request.POST,request.FILES)
         if form.is_valid():
             cathegory = form.save(commit=False)
             cathegory.shop = get_object_or_404(Shop,created_by=request.user)
             cathegory.save()
-            return redirect('item:cathegory',{'shop_exists':cathegory.shop})
+            return redirect('item:cathegory')
     else:
         form = NewCategoryForm()
     return render(request,'cathegory/cathegories.html',{
         'form': form,
         'title': 'New cathegory',
         'is_edit': False,
-        'shop_exists':shop_exists
     })
+@login_required
 def editCategory(request,pk):
     category = get_object_or_404(Category,pk=pk)
-    shop_exists=category.shop.created_by==request.user
     if request.method == 'POST':
         form = EditCategoryForm(request.POST,request.FILES,instance=category)
         if form.is_valid():
             form.save()
-            return redirect('item:cathegory',{'shop_exists':shop_exists})
+            return redirect('item:cathegory')
     else:
         form = EditCategoryForm(instance=category)
     return render(request,'cathegory/cathegories.html',{
         'form': form,
         'title': 'Edit category',
         'category':category,
-        'shop_exists':shop_exists,
         'is_edit': True,
     })
 @login_required
 def deleteCathegory(request,pk):
     cathegory = get_object_or_404(Category,pk=pk)
-    shop_exists = cathegory.shop.created_by==request.user
     cathegory.delete()
-    return redirect('item:cathegory',{'shop_exist':shop_exists})
+    return redirect('item:cathegory')

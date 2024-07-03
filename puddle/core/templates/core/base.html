@@ -5,6 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scal=1.0">
         {% load bootstrap5 %}
+        {% load custom_tags %}
         {% bootstrap_css %}
         {% bootstrap_javascript %}
         <link rel="stylesheet" href="{% static 'css/base.css' %}">
@@ -19,18 +20,20 @@
         <script src="https://cdn.tailwindcss.com"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-        <title>{% block title%} {%endblock%}| Puddle</title>
+        <title>{% block title%} {%endblock%}| IShop</title>
     </head>
     <body>
+        {% greet  request.user as shop_exists%}
+        {% if shop_exists %}
         <div id="mySidenav" class="sidenav">
-            <a href="javascript:void(0)" onclick="closeNav()">Puddle</a>
-            <a href="#">About</a>
-            <a href="#">Services</a>
-            <a href="#">Clients</a>
-            <a href="#">Contact</a>
+            <a href="javascript:void(0)" onclick="closeNav()">{{shop_exists.name}}</a>
+            <a href="{% url 'shop:about_us_shop' shop_exists.id %}">About My Shop</a>
+            <a href="{% url 'item:items' %}?query={{""}}&shop={{shop_exists.id}}">My Item</a>
+            <a href="{% url 'item:cathegory'%}?shop={{shop_exists.id}}">My Category</a>
           </div>
+          {% endif %}
         <nav class="py-6 px-6 flex justify-between item-center border-b border-gray-200">
-            <span style="font-size:30px;cursor:pointer" class="text-xl font-semibold" onclick="openNav()">&#9776; Puddle</span>
+            <span style="font-size:30px;cursor:pointer" class="text-xl font-semibold" onclick="openNav()">&#9776; IShop</span>
             <div class="space-x-6">
                 <a href="{% url 'shop:shops' %}" class="text-lg font-semibold hover:text-gray-500">
                     Shops
@@ -45,11 +48,11 @@
                     Browse
                 </a>
                 {% if request.user.is_authenticated %}
-                <a href="{% url 'conversation:inbox' %}" class="px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700">
+                <a href="{% url 'conversation:inbox' %}" class="text-lg font-semibold hover:text-gray-500">
                     Inbox
                 </a>
                 {% if shop_exists %}
-                <a href="{% url 'dashboard:index' %}" class="px-6 py-3 text-lg font-semibold bg-gray-500 text-white rounded-xl hover:bg-gray-700">
+                <a href="{% url 'dashboard:index' %}" class="text-lg font-semibold hover:text-gray-500">
                     Dashboard
                 </a>   
                 {% endif %}                 
@@ -65,10 +68,10 @@
     </div>
   </div>
                 {% else %}
-                <a href="{% url 'core:signup' %}" class="px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700">
+                <a href="{% url 'core:signup' %}" class="text-lg font-semibold hover:text-gray-500">
                     Sign up
                 </a>
-                <a href="{% url 'core:login' %}" class="px-6 py-3 text-lg font-semibold bg-gray-500 text-white rounded-xl hover:bg-gray-700">
+                <a href="{% url 'core:login' %}" class="text-lg font-semibold hover:text-gray-500">
                     Log in
                 </a>
                 {% endif %}
@@ -81,12 +84,12 @@
         <footer class="py-6 px-6 flex justify-between bg-gray-800" id="nav-container">
             <div class="w-2/3 pr-10">
                 <h3 class="mb-5 font-semibold text-gray-400">About</h3>
-                <p class="text-lg text-gray-500">Lorem ipsum bla bla bla.</p>
+                <p class="text-lg text-gray-500">IShop.</p>
             </div>
             <div class="w-1/3">
                 <h3 class="mb-5 font-semibold text-gray-400">Menu</h3>
                 <ul class="space-y-2">
-                    <li><a href="{% if shop %}{% url 'shop:about_us_shop' shop.id %}{% else %}{% url 'core:about_us'%}{% endif %}" class="text-lg text-teal-500 hover:text-teal-700">About</a> </li>
+                    <li><a href="{% if shop_exists %}{% url 'shop:about_us_shop' shop_exists.id %}{% else %}{% url 'core:about_us'%}{% endif %}" class="text-lg text-teal-500 hover:text-teal-700">{% if shop_exists %}About {{shop_exists.name}}{% else %}Abou us{% endif %}</a> </li>
                     <li><a href="{% url 'core:contact' %}" class="text-lg text-teal-500 hover:text-teal-700">Contact</a> </li>
                 </ul>
             </div>

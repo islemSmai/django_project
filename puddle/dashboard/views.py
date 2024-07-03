@@ -40,7 +40,6 @@ def index(request):
         "shop":shop,
         'months': months,
         'totals': totals,
-        "shop_exists":shop
     })
 @login_required
 def payment(request):

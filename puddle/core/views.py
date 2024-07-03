@@ -5,14 +5,15 @@ from .forms import SignupForm
 from .contact import ContactForm
 from django.conf import settings
 from django.core.mail import send_mail
+from django.shortcuts import render
+
+
 def index(request):
     shops = Shop.objects.all()[0:6]
-    categories = Category.objects.all()
-    shop_exists = Shop.objects.filter(created_by=request.user).exists()
+    categories = Category.objects.all()[:6]
     return render(request,'core/index.html',{
         'categories':categories,
         'shops':shops,
-        'shop_exists':shop_exists
     })
 def contact(request):
     if request.method == 'POST':
@@ -49,5 +50,4 @@ def myShop(request):
         'shop':shop,
         'categories':categories,
         'related_items':related_items,
-        'shop_exists':shop
     })

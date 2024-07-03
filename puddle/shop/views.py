@@ -42,7 +42,6 @@ def detailShop(request,pk):
     related_items = Item.objects.filter(category__in=categories,is_sold=False)[:8]
     return render(request, 'shop/detail.html',{
         'shop':shop,
-        'shop_exists':shop.created_by==request.user,
         'categories':categories,
         'related_items':related_items,
         'about_us':about_us
@@ -50,20 +49,17 @@ def detailShop(request,pk):
 def shops(request):
     query = request.GET.get('query','')
     shops =Shop.objects.all()
-    shop_exists = Shop.objects.filter(created_by=request.user).exists()
     if query:
         shops = shops.filter(Q(name__icontains=query) | Q(description__icontains=query))
     return render(request,'shop/shops.html',{
         'shops':shops,
         'query':query,
-        'shop_exists':shop_exists
     })
 @login_required
 def deleteShop(request,pk):
     shop = get_object_or_404(Shop,pk=pk,created_by=request.user)
-    shop_exists = shop.created_by == request.user
     shop.delete()
-    return redirect('shop/shops.html',{'shop_exists':shop_exists})
+    return redirect('shop/shops.html')
 @login_required
 def about_us(request):
     if request.method == 'POST':
@@ -84,6 +80,5 @@ def about_us_shop(request,pk):
     about_us = AboutUs.objects.filter(shop=shop)
     return render(request, 'about_us/about_us_shop.html',{
         'shop':shop,
-        'shop_exists':shop.created_by==request.user,
         'about_us':about_us
     })

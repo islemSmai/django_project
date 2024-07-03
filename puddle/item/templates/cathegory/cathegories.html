@@ -1,17 +1,17 @@
 {% extends 'core/base.html' %}
-{% block title %} Cathegory {% endblock %}
+{% block title %} Category {% endblock %}
 {% block content %}
 <div class="pb-6 px-6 py-6">
   <h2 class="mb-12 text-4xl text-font text-center">
     {% if shop %}
     {{shop.name}}
     {% endif %}
-     Cathegory</h2>
+     Category</h2>
   {% if request.user == shop.created_by %}
   <div style="display: flex;justify-content: end;padding-bottom: 1em;">
     <a data-bs-toggle="modal" data-bs-target="#addCategory">
     <button class="cta" data-bs-toggle="modal" data-bs-target="#addCategory">
-        <span class="hover-underline-animation"> Add New Cathegory </span>
+        <span class="hover-underline-animation"> Add New Category </span>
         <img id="arrow-horizontal" src="../../../media/image/right-arrow.png">
       </button>
 </a></div>
@@ -33,7 +33,7 @@
                       <div class="mb-3">
                           <label class="inline-block mb-2" style="color: #fff;">Name</label><br>
                           {{ form.name }}
-                          <input type="text" name="name" value="{{ form.name.value }}" class="w-full py-4 px-6 rounded-xl border" maxlength="255">
+                          <input type="text" name="name" style="color: black;" value="{{ form.name.value }}" class="w-full py-4 px-6 rounded-xl border" maxlength="255">
                       </div>
                       <div class="mb-3">
                           <label class="inline-block mb-2" style="color: #fff;">Image</label><br>
@@ -70,7 +70,9 @@
   <div class="notification">
     <div class="notiglow"></div>
     <div class="notiborderglow"></div>
-    <div class="notititle">{{category.name}}</div>
+    <div class="notititle">
+      {{category.name}}
+    </div>
     <div class="notibody">{{category.shop.name}}</div>
     <div class="notibody">{{category.shop.created_by}}</div>
     <div class="notibody">{{category.items.count}} items</div>

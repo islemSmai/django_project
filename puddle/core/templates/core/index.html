@@ -5,54 +5,6 @@
     <h2 class="mb-12 text-4xl text-font text-center">Newest shops</h2>
     <div class="grid grid-cols-3 gap-3">
        {% for shop in shops %}
-      <!--
-         <div class="flip-card">
-        <div class="cart-shop" >
-            <div class="flip-card-front">
-            <a href="{% url 'shop:detail' shop.id %}">
-                <div class="div-img-shop">
-                    <img src="{{shop.image.url }}" class="img-shop">
-                </div>
-               <div class="desc-shop">
-                <h2 class="text-back text-font"> 
-                    {{shop.name}}
-                </h2>
-                <p class="text-font" style="color: lightslategray;">
-                    Owner: {{shop.created_by}}
-                </p>
-               </div>
-              
-            </a>
-            </div>
-            <div class="flip-card-back">
-                <a href="{% url 'shop:detail' shop.id %}">
-                <div class="desc-shop" style="display: flex;">
-                    <div>
-                        <img src="{{shop.logo.url }}" class="img-shop-back">
-                    </div>
-                   <div style="margin-left: 0.5em;">
-                    <h2 class="text-font text-back"> 
-                        {{shop.name}}
-                    </h2>
-                    <p class="text-font fa" style="color: lightslategray;">
-                        &#xf0e0; {{shop.created_by.email}}
-                    </p>
-                   </div>
-                </div>
-                <div class="desc-shop"> 
-                    <p class="text-font">
-                        Description: 
-                    </p>
-                    <p class="text-font">
-                        {{shop.description}}
-                    </p>
-                </div>
-                </a>
-           </div>
-           
-       </div>
-  </div>
-      -->
   <div class="card">
     <a href="{% url 'shop:detail' shop.id %}">
    <div>
