@@ -4,17 +4,16 @@ Welcome to the Django Online Shop repository! This project is designed to facili
 This repository contains the code for a comprehensive Django project aimed at supporting various aspects of an online shop. The project is modular, with several distinct applications that work together to provide a seamless shopping experience.
 ## Key Applications
 ### 1 Item Management
-  <br/>
-     _ **Description:**  Manages products and their categories.
+  _ **Description:**  Manages products and their categories.
     <br/>
-     _ **Components:**
+  _ **Components:**
     <br/>
-     _ **Models:** Define the structure of products and categories.
+  _ **Models:** Define the structure of products and categories.
    <br/>
-     _ **Views:** Handle the logic for displaying and manipulating product and category data.
+  _ **Views:** Handle the logic for displaying and manipulating product and category data.
    <br/>
 
- _ **Templates:** Provide the HTML structure for rendering product and category pages.
+  _ **Templates:** Provide the HTML structure for rendering product and category pages.
    <br/>
 
  _ **URLS:** Route user requests to the appropriate views for product and category operations.
