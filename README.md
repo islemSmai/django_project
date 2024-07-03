@@ -12,7 +12,7 @@ Templates: Provide the HTML structure for rendering product and category pages.
 URLs: Route user requests to the appropriate views for product and category operations.
 ### 2 Shop Management
 <br/>
-  _ **Description:** Manages the overall shop operations.
+  _ **Description:**  Manages the overall shop operations.
   <br/>
 
   _ **Components:**
@@ -25,7 +25,7 @@ URLs: Direct user requests to the correct views for shop functions.
 ### 3 Conversation Management
 <br/>
 
-  _ **Description:** Facilitates communication between users and the shop owner.
+  _ **Description:**  Facilitates communication between users and the shop owner.
   <br/>
 
   _ **Components:**
